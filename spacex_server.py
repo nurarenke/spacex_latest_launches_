@@ -1,6 +1,7 @@
 """Spacex Latest Information"""
 
 import requests
+from jinja2 import StrictUndefined
 
 from flask import Flask, render_template, request, flash, redirect, session
 
@@ -19,12 +20,21 @@ def get_data():
 
     spacex_json = requests.get('https://api.spacexdata.com/v1/launches/latest').content
 
-    for spacex_dict in space_json:
-        for title, info in spacex_dict:
-            
-
+    display_info = clean_json(spacex_json)
     
-    return 
+    return render_template('/homepage.html',
+                            display_info=display_info)
+#############################################################################
+#Helper functions
+def clean_json(json_dict):
+    '''iterates through json dictionary objects and print everything'''
+
+    for title, info in json_dict.iteritems():
+        if isinstance(info, dict):
+            clean_json(info)
+        else:
+            print "{0} : {1}".format(title, info)
+
 
     
 

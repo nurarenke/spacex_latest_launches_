@@ -14,19 +14,10 @@
         <div class="col-md-6 col-lg-6">
             <div class="well spaced">
                 <h1>Latest Launch Info</h1>
-
-                {%for fact in display_info%}
-
-                <ul>
-                    <li>{{fact}}</li>
-                </ul>
-
-                {%endfor%}
-          
+                <h3>Flight Number: {{flight_number}}</h3>
+                <h3>Launch Year: {{launch_year}}</h3>
+                <h3>Rocket Name: {{rocket_name}}</h3>
         </div>
-
-        
-       
     </div>
 </div>
 {% endblock %}
